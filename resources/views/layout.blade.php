@@ -2,9 +2,12 @@
 <html >
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="css/all.css">
         <title>Phoenix</title>
+        @yield('index-footer')
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -33,7 +36,7 @@
             max-width: 1920px;
             ">
 
-                <nav class="col-12 d-flex justify-content-center" style="height: 87px;">
+                <nav class="col-12 d-flex justify-content-center pc-nav" style="height: 87px;">
 
                     <div class="rectangle col-9 d-flex align-items-center justify-content-center flex-row-reverse">
                         <div class="col-1 text-center"><a href="/" style="color : #b86948;" class="{{ Request::path() === '/' ? 'path-underline' : ''}}">الرئيسية</a></div>
@@ -47,6 +50,29 @@
 
 
                 </nav>
+
+                {{-- <-------- for mobile ----------> --}}
+
+                <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;background-color: #2d1314;text-align: right;z-index: 100;" id="mySidebar">
+                    <button class="w3-bar-item  w3-large"
+                    onclick="w3_close()" type="button" style="text-align: right;padding: 0;color: wheat;background-color: inherit;margin-bottom: 15px;"> &times;</button>
+
+
+                    <div class="{{ Request::path() === '/' ? 'path-active' : ''}}"><a href="/"  >الرئيسية</a></div>
+                    <div class="{{ Request::path() === 'info' ? 'path-active' : ''}}"><a href="info"  >معلومات السيرفر</a></div>
+                    <div class="{{ Request::path() === 'news' ? 'path-active' : ''}}"><a href="news"  >الأخبار</a></div>
+                    <div class="{{ Request::path() === 'albums' ? 'path-active' : ''}}"><a href="albums"  >الألبوم</a></div>
+                    <div class="{{ Request::path() === 'join' ? 'path-active' : ''}}"><a href="join"  >كيفية الدخول للسيرفر</a></div>
+                 </div>
+
+
+
+
+                    <button style="background-color:#b86948 !important;display: none;" id="openNav" class="w3-button w3-teal w3-xlarge w3-right" onclick="w3_open()" type="button" >&#9776;</button>
+
+
+                {{-- <-------- .. ----------> --}}
+
 
                 <header class="d-flex align-items-end flex-column mx-auto">
                         {{-- <div class="h-spacer"></div> --}}
@@ -103,8 +129,8 @@
             <div class="col-12" style="
             max-width:1920px !important;
             ">
-            <div class="col-9 d-flex flex-wrap mx-auto" style="padding:0;margin-bottom: 80px;">
-                <div class="col-12 " style="padding:0;margin-top: 40px;margin-bottom: 15px;"><div class="lang"><select  type="menu" style="width: 100px;">
+            <div class="col-9 d-flex flex-wrap mx-auto row-rfrs" style="padding:0;margin-bottom: 80px;">
+                <div class="col-12 lang-c" style="padding:0;margin-top: 40px;margin-bottom: 15px;"><div class="lang"><select  type="menu" style="width: 100px;">
 
                     <option selected>العربية</option>
 
@@ -118,7 +144,7 @@
                         <a href="/news" class="col-6" style="padding: 0 !important;">
                         <div style="text-align: right;padding: 0 !important;margin-bottom: 7px;" class=" d-flex flex-wrap col-12">
 
-                            <div class="col-6 d-flex flex-wrap" style="padding: 0 6px!important;">
+                            <div class="col-6 d-flex flex-wrap " id="single-news-para" style="padding: 0 6px!important;">
                                 <p class="col-12" style="
                                 font-family: Tajawal-Bold;padding: 0 !important;
                                 font-size: 12px;color:#b86948;
@@ -128,7 +154,7 @@
                                 ">{{$new->body}}</p>
                                 <div class="d-flex flex-wrap col-12" style="padding: 0;text-align:right;">
 
-                                    <div class="date col-12 d-flex" style="padding: 0;margin-left: auto;justify-content: flex-end;">
+                                    <div class="date col-12 d-flex" id="date" style="padding: 0;margin-left: auto;justify-content: flex-end;">
                                         <p style="padding: 0 !important;color:#e0cbba;font-size:11px;margin-left: auto;">{{$new->updated_at}}</p>
                                         <div class="date-img" style="margin-left: auto;"></div>
                                     </div>
@@ -216,8 +242,11 @@
                 $('.orcbox .active-back').fadeIn();
                 $('.char-para').fadeOut();
                 $('.char-para-orc').fadeIn();
+                $('.story-para-chars').fadeOut();
+                $('.story-para-chars-orc').fadeIn();
 
                 $('.big-char-orc').fadeIn(0);
+                $('.story-para-chars-orc').fadeIn(0);
                 $(".chars > div").click(function(){
                     if ($(this).hasClass('orcbox')) {
                         $('.charbox .active-back').fadeOut(0);
@@ -229,6 +258,9 @@
                         $('.big-char-item').fadeOut(0);
                         $('.big-char-orc').fadeIn();
 
+                        $('.story-para-chars').fadeOut(0);
+                        $('.story-para-chars-orc').fadeIn();
+
                     }
                     else if ($(this).hasClass('camilebox')) {
                         $('.charbox .active-back').fadeOut(0);
@@ -239,6 +271,9 @@
 
                         $('.big-char-item').fadeOut(0);
                         $('.big-char-camile').fadeIn();
+
+                        $('.story-para-chars').fadeOut(0);
+                        $('.story-para-chars-camile').fadeIn();
                     }
                     else if ($(this).hasClass('humanbox')) {
                         $('.charbox .active-back').fadeOut(0);
@@ -249,6 +284,9 @@
 
                         $('.big-char-item').fadeOut(0);
                         $('.big-char-human').fadeIn();
+
+                        $('.story-para-chars').fadeOut(0);
+                        $('.story-para-chars-human').fadeIn();
                     }
                     else if ($(this).hasClass('darkelfbox')) {
                         $('.charbox .active-back').fadeOut(0);
@@ -259,6 +297,9 @@
 
                         $('.big-char-item').fadeOut(0);
                         $('.big-char-darkelf').fadeIn();
+
+                        $('.story-para-chars').fadeOut(0);
+                        $('.story-para-chars-darkelf').fadeIn();
                     }
                     else if ($(this).hasClass('elfbox')) {
                         $('.charbox .active-back').fadeOut(0);
@@ -269,6 +310,9 @@
 
                         $('.big-char-item').fadeOut(0);
                         $('.big-char-elf').fadeIn();
+
+                        $('.story-para-chars').fadeOut(0);
+                        $('.story-para-chars-elf').fadeIn();
                     }
                     else if ($(this).hasClass('dwarfbox')) {
                         $('.charbox .active-back').fadeOut(0);
@@ -279,11 +323,29 @@
 
                         $('.big-char-item').fadeOut(0);
                         $('.big-char-dwarf').fadeIn();
+
+                        $('.story-para-chars').fadeOut(0);
+                        $('.story-para-chars-dwarf').fadeIn();
                     }
 
                 });
             });
+
         </script>
+                  <script>
+                    function w3_open() {
+
+                      document.getElementById("mySidebar").style.width = "50%";
+                      document.getElementById("mySidebar").style.display = "block";
+                    //   document.getElementById("openNav").style.display = 'none';
+                    }
+                    function w3_close() {
+
+                      document.getElementById("mySidebar").style.display = "none";
+                      document.getElementById("openNav").style.display = "inline-block";
+                    }
+                    </script>
+
 
     </body>
 

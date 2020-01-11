@@ -10,7 +10,7 @@
                         <div class="news-img-container col-5">
                             <img class="news-img" src="/images/news/{{$new->img}}" >
                         </div>
-                        <div style="margin: 20px">
+                        <div style="margin: 20px" class="single-news-body">
                             <h2>{{$new->title}}</h2>
                             <p style="font-size:14px;color:#b2bec3;">
                                 {{$new->body}}

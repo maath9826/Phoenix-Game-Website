@@ -27,10 +27,10 @@ textarea{
 
 @section('content')
 <div class="shopimg story col-10 mx-auto" ><h1 class="text-center" style="margin-top: 0;font-family:Tajawal-bold">كيفية الدخول</h1></div>
-<div class="news-container col-10" style="margin-top: 100px;margin-bottom: 100px;">
+<div class="news-container col-10 join-container" style="margin-top: 100px;margin-bottom: 100px;">
     <div class="w3-row-padding w3-center my-5">
         <div class="pb-5">
-        <div class="w3-card w3-container d-flex p-0" style="min-height:0;background-color:#2d1314;box-shadow: 0 2px 5px 0 rgba(0,0,0,0.56), 0 2px 10px 0 rgba(0,0,0,0.52);">
+        <div class="w3-card w3-container d-flex p-0 join-pc" style="min-height:0;background-color:#2d1314;box-shadow: 0 2px 5px 0 rgba(0,0,0,0.56), 0 2px 10px 0 rgba(0,0,0,0.52);">
         <div class=" d-flex" style="justify-content: center;align-items: center;padding: 0 20px; background-color:#b86948;flex: 0 0 48%;max-width: 48%;">
             <i class="fa fa-desktop w3-text-theme" style="font-size:12vw;padding: 50px 0;"></i>
         </div>
@@ -44,9 +44,9 @@ textarea{
 
         </div>
         </div>
-        <div class="d-flex">
+        <div class="d-flex join-download">
             <div  style="padding:0;margin-right: auto;flex: 0 0 48%;max-width: 48%;">
-                <div class="w3-card w3-container" style="padding: 0;min-height:0;background-color:#2d1314;box-shadow: 0 2px 5px 0 rgba(0,0,0,0.56), 0 2px 10px 0 rgba(0,0,0,0.52);">
+                <div class="w3-card w3-container join-patch" style="padding: 0;min-height:0;background-color:#2d1314;box-shadow: 0 2px 5px 0 rgba(0,0,0,0.56), 0 2px 10px 0 rgba(0,0,0,0.52);">
                     <div class="col-12 d-flex" style="justify-content: center;align-items: center;padding: 50px 0px; background-color:#b86948;">
                         <i class="fas fa-file-download w3-text-theme " style="font-size:10vw;"></i>
                     </div>
