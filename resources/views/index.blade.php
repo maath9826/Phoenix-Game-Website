@@ -20,6 +20,8 @@ footer{
 
 
 </style>
+<meta name="description" content="سيرفر لاين ايج عربي">
+<meta name="keywords" content="العنقاء , سيرفر العنقاء , لاين ايج 2 ,اون لاين , phoenix , lineage 2">
 @endsection
 
 

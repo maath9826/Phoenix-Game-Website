@@ -5,16 +5,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="css/all.css">
-        <title>Phoenix</title>
+        <link rel="stylesheet" type="text/css" href="{{asset('css/all.css')}}">
+        <title>
+            {{ Request::path() === '/' ? 'الرئيسية' : ''}}
+            {{ Request::path() === 'info' ? 'معلومات السيرفر' : ''}}
+            {{ Request::path() === 'join' ? 'كيفية الدخول' : ''}}
+            {{ Request::path() === 'albums' ? 'الألبومات' : ''}}
+            {{ Request::path() === 'news' ? 'الأخبار' : ''}}
+            @yield('singleNews')
+        </title>
         @yield('index-footer')
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         {{-- css links --}}
-        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="{{asset('css/header.css')}}">
         @yield('index-head')
+
 
     </head>
     <body class="position-relative">
@@ -40,10 +48,10 @@
 
                     <div class="rectangle col-9 d-flex align-items-center justify-content-center flex-row-reverse">
                         <div class="col-1 text-center"><a href="/" style="color : #b86948;" class="{{ Request::path() === '/' ? 'path-underline' : ''}}">الرئيسية</a></div>
-                        <div class="col-2 text-center"><a href="info" style="color : #b86948;padding:0 !important;" class="{{ Request::path() === 'info' ? 'path-underline' : ''}}">معلومات السيرفر</a></div>
-                        <div class="col-1 text-center"><a href="news" style="color : #b86948;" class="{{ Request::path() === 'news' ? 'path-underline' : ''}}">الأخبار</a></div>
-                        <div class="col-1 text-center"><a href="albums" style="color : #b86948;" class="{{ Request::path() === 'albums' ? 'path-underline' : ''}}">الألبوم</a></div>
-                        <div class="col-3 text-center"><a href="join" style="color : #b86948;margin:0 !important;" class="{{ Request::path() === 'join' ? 'path-underline' : ''}}">كيفية الدخول للسيرفر</a></div>
+                        <div class="col-2 text-center"><a href="/info" style="color : #b86948;padding:0 !important;" class="{{ Request::path() === 'info' ? 'path-underline' : ''}}">معلومات السيرفر</a></div>
+                        <div class="col-1 text-center"><a href="/news" style="color : #b86948;" class="{{ Request::path() === 'news' ? 'path-underline' : ''}}">الأخبار</a></div>
+                        <div class="col-1 text-center"><a href="/albums" style="color : #b86948;" class="{{ Request::path() === 'albums' ? 'path-underline' : ''}}">الألبوم</a></div>
+                        <div class="col-3 text-center"><a href="/join" style="color : #b86948;margin:0 !important;" class="{{ Request::path() === 'join' ? 'path-underline' : ''}}">كيفية الدخول للسيرفر</a></div>
                     </div>
 
 
@@ -90,7 +98,7 @@
                                             هو ببساطة نص شكلي بمعنى أن الغاية هو الشكل وليس المحتوى ويستخدم
                                             هو ببساطة نص شكلي بمعنى أن الغاية هو الشكل وليس المحتوى ويستخد
                                     </p>
-                                    <img src="images/index/header/read more.png" alt="read-more" >
+                                    <img src="{{asset('images/index/header/read more.png')}}" alt="read-more" >
                                 </div>
                             </div>
                         </div>

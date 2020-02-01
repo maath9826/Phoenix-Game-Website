@@ -23,35 +23,33 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
-Route::view('/', 'index',[
-        'story'=> Story::first(),
-        'products'=> Products::take(6)->latest()->get(),
-        'news'=>News::take(6)->latest()->get()
-    ]);
+// -------main--------
+Route::view('/', 'index',['story'=> Story::first(),'products'=> Products::take(6)->latest()->get(),'news'=>News::take(6)->latest()->get()]);
 
-Route::view('/info', 'info', [
-    'infos'=>Info::latest()->paginate(9),
-    'news'=>News::take(6)->latest()->get()
-    ]);
-Route::view('/albums', 'albums',[
-    'news'=>News::take(6)->latest()->get()
-]);
+// -------info--------
+Route::view('/info', 'info', ['infos'=>Info::latest()->paginate(9),'news'=>News::take(6)->latest()->get()]);
+
+// -------news--------
 Route::view('/news', 'news', ['news'=>News::latest()->paginate(6)]);
-Route::view('/join', 'join',[
-    'news'=>News::take(6)->latest()->get()
-]);
-Route::view('/shop', 'shop', ['products'=>Products::latest()->paginate(9)
-,
-'news'=>News::take(6)->latest()->get()
-]);
-Route::view('/albums', 'albums', ['albums'=>Album::latest()->paginate(15),
-'news'=>News::take(6)->latest()->get()]);
+Route::get('/news/{damn}', 'NewsController@showSingleNews');
+
+// -------join--------
+Route::view('/join', 'join',['news'=>News::take(6)->latest()->get()]);
+
+// -------shop--------
+Route::view('/shop', 'shop', ['products'=>Products::latest()->paginate(9),'news'=>News::take(6)->latest()->get()]);
+
+// -------info--------
+Route::view('/albums', 'albums', ['albums'=>Album::latest()->paginate(15),'news'=>News::take(6)->latest()->get()]);
 
 
 
+// -------email--------
 Route::post('/sendEmail', 'sendEmailController@sendEmail');
 
 
+
+// -------dashboard--------
 
 Route::prefix('/l2admin')->group(function(){
 
